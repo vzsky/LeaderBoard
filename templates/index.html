@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block body %}
+    <div class="container">
+        <br><br><br>
+        <div class="row">
+            <div class="col-4">
+                <img src="/static/logo.png" width="160px">
+            </div>
+            <div class="col-8">
+                <img src="/static/banner.png" width="500px">
+            </div>
+        </div>
+        <br><br><br>
+        <!-- <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">School</th>
+                    <th scope="col">Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in range(0,5) %}
+                    <tr>
+                        <td id = "School{{i}}"></td>
+                        <td id = "Score{{i}}"></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table> -->
+
+        <ul class="list-group">
+            <!-- <li class="list-group-item">
+                <div class="ext-left">
+                    School
+                </div>
+                <div class="ext-right">
+                    Score
+                </div>
+            </li> -->
+            {% for i in range(5) %} <!-- change this shit to number-->
+                <li id="{{i}}" class="list-group-item font-change">
+                    <div class="content-left" id="School{{i}}">
+                    </div>
+                    <div class="ext-right" id="Score{{i}}">
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+  
+    <script type='text/javascript'>
+
+        $(document).ready(function() {
+            $("li#0").css("background-color","#FFFF52")
+            $("li#1").css("background-color","#E7E7E7")
+            $("li#2").css("background-color","#C7A074")
+            for(let i = 3; i < {{number}}; i++){
+                $("li#"+i).css("background-color","#FFCC88")
+            }
+        })
+        
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+        socket.on('connect', function() {
+            socket.emit("request")
+        })
+        socket.on('my response', function(msg) {
+            console.log(msg)
+            for(let i = 0; i < {{number}}; i++){
+                $("div#School"+i).html(msg[i][0]) 
+                $("div#Score"+i).html(msg[i][1])
+            }
+        })
+    </script>
+{% endblock %}
