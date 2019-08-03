@@ -1,15 +1,18 @@
 {% extends "base.html" %}
 {% block body %}
-  <form action="" method="POST">
-    <!-- <input type="text" id="school" placeholder="User Name"/> -->
-    <select id="school">
-      {% for school in schools %}
-        <option value='{{school[0]}}'>{{school[1]}}</option>
-      {% endfor %}
-    </select>
-    <input type="text" id="amount" placeholder="Messages"/>
-    <input type="submit"/>
-  </form>
+  <br><br>
+  <div class="container">
+    <form action="" method="POST">
+      <!-- <input type="text" id="school" placeholder="User Name"/> -->
+      <select id="school">
+        {% for school in schools %}
+          <option value='{{school[0]}}'>{{school[1]}}</option>
+        {% endfor %}
+      </select>
+      <input type="text" id="amount" placeholder="Messages"/>
+      <input type="submit"/>
+    </form>
+  </div>
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script type="text/javascript">
